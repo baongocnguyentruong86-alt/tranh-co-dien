@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trường phái hội họa Cổ điển</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,700;1,700&family=Open+Sans&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =============================
+       Reset & Base Styles
+       ============================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Open Sans', sans-serif;
+      background-color: #f7f2e9; /* beige nhẹ */
+      color: #333;
+      scroll-behavior: smooth;
+      line-height: 1.6;
+    }
+    img {
+      max-width: 100%;
+      display: block;
+      height: auto;
+    }
+    a {
+      color: #c49b44; /* vàng cổ điển */
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    h1, h2, h3 {
+      font-family: 'Merriweather', serif;
+      color: #3b3b3b; /* xám đậm */
+      margin-top: 0;
+    }
+    h1 {
+      font-size: 3rem;
+      line-height: 1.1;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: .6em;
+    }
+    p {
+      font-size: 1rem;
+      color: #444;
+    }
+    /* Container chung */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    /* =============================
+       1. HERO SECTION
+       ============================= */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    /* Background image with parallax effect */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+      filter: brightness(0.6);
+      z-index: -2;
+      transform: translateZ(0);
+      will-change: transform;
+    }
+    /* Gradient lớp phủ nhẹ để chữ nổi */
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(196,155,68,0.6) 0%, rgba(59,59,59,0.8) 100%);
+      z-index: -1;
+    }
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 0.4em;
+      text-shadow: 1px 1px 6px rgba(0,0,0,0.6);
+    }
+    .hero p {
+      font-size: 1.3rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      font-style: italic;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.4);
+    }
+
+    /* Scroll indicator icon */
+    .scroll-indicator {
+      width: 24px;
+      height: 40px;
+      border: 2px solid #c49b44;
+      border-radius: 15px;
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      cursor: pointer;
+    }
+    .scroll-indicator::before {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 6px;
+      height: 6px;
+      background: #c49b44;
+      border-radius: 50%;
+      animation: scroll 2s infinite;
+    }
+    @keyframes scroll {
+      0%, 100% { top: 8px; opacity: 1; }
+      50% { top: 24px; opacity: 0; }
+    }
+
+    /* =============================
+       2. GIỚI THIỆU (2 cột)
+       ============================= */
+    .intro {
+      display: flex;
+      gap: 2rem;
+      padding: 4rem 0;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    .intro.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .intro .text {
+      flex: 1;
+      font-size: 1.1rem;
+      color: #555;
+    }
+    .intro .image {
+      flex: 1;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    /* =============================
+       3. ĐẶC ĐIỂM HỘI HỌA CỔ ĐIỂN (Cards)
+       ============================= */
+    .features {
+      padding-bottom: 4rem;
+    }
+    .features .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+      color: #3b3b3b;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      color: #c49b44; /* vàng cổ điển */
+    }
+    .card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    /* =============================
+       4. HỌA SĨ TIÊU BIỂU (Grid gallery)
+       ============================= */
+    .artists {
+      padding-bottom: 4rem;
+    }
+    .artists .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.8rem;
+    }
+    .artist-card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+    .artist-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+    .artist-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .artist-info {
+      padding: 1rem 1.2rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .artist-info h3 {
+      margin: 0 0 0.4rem 0;
+      font-size: 1.3rem;
+      color: #3b3b3b;
+    }
+    .artist-info p {
+      flex-grow: 1;
+      margin: 0;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    /* =============================
+       5. BỘ SƯU TẬP TÁC PHẨM (Gallery masonry + lightbox)
+       ============================= */
+    .gallery {
+      padding-bottom: 4rem;
+    }
+    .gallery-grid {
+      column-count: 3;
+      column-gap: 1rem;
+    }
+    .gallery-item {
+      margin-bottom: 1rem;
+      cursor: pointer;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      break-inside: avoid;
+    }
+    .gallery-item img {
+      width: 100%;
+      display: block;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1000;
+    }
+    .lightbox.active {
+      visibility: visible;
+      opacity: 1;
+    }
+    .lightbox-img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    }
+    .lightbox-close {
+      position: fixed;
+      top: 20px;
+      right: 30px;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+      font-weight: bold;
+      z-index: 1010;
+    }
+
+    /* =============================
+       6. KẾT LUẬN
+       ============================= */
+    .conclusion {
+      padding: 3rem 0 6rem;
+      text-align: center;
+      font-size: 1.1rem;
+      color: #444;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.5;
+    }
+
+    /* =============================
+       7. FOOTER
+       ============================= */
+    footer {
+      background: #3b3b3b;
+      color: #ddd;
+      padding: 2rem 0;
+    }
+    footer .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2rem;
+      font-size: 0.9rem;
+    }
+    footer nav {
+      flex: 1 1 200px;
+    }
+    footer nav a {
+      display: inline-block;
+      margin-bottom: 0.6rem;
+      color: #c49b44;
+      font-weight: 600;
+    }
+    footer .desc {
+      flex: 2 1 300px;
+      max-width: 600px;
+      color: #ddd;
+      line-height: 1.4;
+    }
+    footer .copyright {
+      text-align: center;
+      margin-top: 1.5rem;
+      width: 100%;
+      font-size: 0.85rem;
+      color: #999;
+    }
+
+    /* =============================
+       Responsive
+       ============================= */
+    @media (max-width: 1024px) {
+      .intro {
+        flex-direction: column;
+      }
+      .gallery-grid {
+        column-count: 2;
+      }
+    }
+    @media (max-width: 600px) {
+      h1.hero-title {
+        font-size: 2.5rem;
+      }
+      .gallery-grid {
+        column-count: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== 1. HERO SECTION ===== -->
+  <section class="hero" role="banner" aria-label="Trang đầu Trường phái hội họa Cổ điển">
+    <h1 class="hero-title">Trường phái hội họa Cổ điển</h1>
+    <p>Hành trình khám phá vẻ đẹp, tỷ lệ và sự hài hòa trong nghệ thuật cổ điển.</p>
+    <div class="scroll-indicator" aria-label="Cuộn xuống"></div>
+  </section>
+
+  <!-- ===== 2. GIỚI THIỆU ===== -->
+  <section class="intro container" id="gioi-thieu" aria-labelledby="intro-title">
+    <article class="text" tabindex="0">
+      <h2 id="intro-title">Giới thiệu về trường phái cổ điển</h2>
+      <p>Trường phái hội họa cổ điển bắt nguồn từ nền văn hóa Hy Lạp – La Mã cổ đại, nơi đề cao sự hoàn hảo về tỷ lệ cơ thể và bố cục tác phẩm. Những bức tranh thể hiện sự cân đối, hài hòa và tôn vinh vẻ đẹp tự nhiên thông qua kỹ thuật vẽ tinh xảo và chân thực.</p>
+      <p>Chính sự đề cao tỷ lệ và sự hài hòa này làm nên bản sắc riêng và giá trị nghệ thuật vượt thời gian của hội họa cổ điển.</p>
+    </article>
+    <figure class="image" tabindex="0" aria-label="Minh họa các tác phẩm hội họa cổ điển">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/28/La_gioconda%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg" alt="Bức tranh Mona Lisa của Leonardo da Vinci"/>
+    </figure>
+  </section>
+
+  <!-- ===== 3. ĐẶC ĐIỂM HỘI HỌA CỔ ĐIỂN ===== -->
+  <section class="features container" aria-labelledby="features-title">
+    <h2 id="features-title">Đặc điểm của hội họa cổ điển</h2>
+    <div class="cards">
+      <div class="card" tabindex="0" aria-label="Tỷ lệ cơ thể chuẩn mực">
+        <h3>Tỷ lệ cơ thể chuẩn mực</h3>
+        <p>Thể hiện sự hài hòa và cân đối của hình thể con người theo tiêu chuẩn thẩm mỹ cổ điển.</p>
+      </div>
+      <div class="card" tabindex="0" aria-label="Bố cục cân đối và hài hòa">
+        <h3>Bố cục cân đối và hài hòa</h3>
+        <p>Phân bố các yếu tố trong tranh theo nguyên tắc cân bằng tạo sự ổn định và thẩm mỹ.</p>
+      </div>
+      <div class="card" tabindex="0" aria-label="Đề tài thần thoại và tôn giáo">
+        <h3>Đề tài thần thoại và tôn giáo</h3>
+        <p>Khắc họa các câu chuyện thần thoại và tín ngưỡng với ý nghĩa sâu sắc, biểu tượng.</p>
+      </div>
+      <div class="card" tabindex="0" aria-label="Kỹ thuật vẽ chi tiết, chân thực">
+        <h3>Kỹ thuật vẽ chi tiết, chân thực</h3>
+        <p>Sử dụng kỹ thuật tinh xảo để tạo lớp màu, ánh sáng và độ sâu chân thực.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4. CÁC HỌA SĨ TIÊU BIỂU ===== -->
+  <section class="artists container" aria-labelledby="artists-title">
+    <h2 id="artists-title">Các họa sĩ tiêu biểu</h2>
+    <div class="grid">
+      <div class="artist-card" tabindex="0" aria-label="Leonardo da Vinci">
+        <img class="artist-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Leonardo_self.jpg/220px-Leonardo_self.jpg" alt="Chân dung Leonardo da Vinci" />
+        <div class="artist-info">
+          <h3>Leonardo da Vinci</h3>
+          <p>Người tiên phong với các tác phẩm mang dấu ấn nhân văn và khoa học sâu sắc.</p>
+        </div>
+      </div>
+      <div class="artist-card" tabindex="0" aria-label="Michelangelo">
+        <img class="artist-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Michelangelo_selfportrait.jpg/220px-Michelangelo_selfportrait.jpg" alt="Chân dung Michelangelo" />
+        <div class="artist-info">
+          <h3>Michelangelo</h3>
+          <p>Họa sĩ và nhà điêu khắc xuất sắc với các tác phẩm truyền cảm hứng.</p>
+        </div>
+      </div>
+      <div class="artist-card" tabindex="0" aria-label="Raphael">
+        <img class="artist-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Raphael_%28Raffaello_Sanzio%29_-_Portrait_of_a_Man_-_Google_Art_Project.jpg/220px-Raphael_%28Raffaello_Sanzio%29_-_Portrait_of_a_Man_-_Google_Art_Project.jpg" alt="Chân dung Raphael" />
+        <div class="artist-info">
+          <h3>Raphael</h3>
+          <p>Nổi tiếng với sự hài hòa và sự tinh tế trong bố cục và màu sắc.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 5. BỘ SƯU TẬP TÁC PHẨM ===== -->
+  <section class="gallery container" aria-labelledby="gallery-title">
+    <h2 id="gallery-title">Bộ sưu tập tác phẩm cổ điển</h2>
+    <div class="gallery-grid" role="list">
+      <!-- Mỗi gallery-item là 1 tác phẩm -->
+      <div class="gallery-item" role="listitem" tabindex="0" aria-label="Tác phẩm Mona Lisa của Leonardo da Vinci">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/28/La_gioconda%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg" alt="Mona Lisa, Leonardo da Vinci" />
+      </div>
+      <div class="gallery-item" role="listitem" tabindex="0" aria-label="Tác phẩm Tranh cuối cùng của Michelangelo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d8/Michelangelo_-_Last_Judgment_01.jpg" alt="Phán xét cuối cùng, Michelangelo" />
+      </div>
+      <div class="gallery-item" role="listitem" tabindex="0" aria-label="Tác phẩm Madonna của Raphael">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Raphael_-_Sistine_Madonna_-_Google_Art_Project.jpg" alt="Madonna Sistine, Raphael" />
+      </div>
+      <div class="gallery-item" role="listitem" tabindex="0" aria-label="Tác phẩm Apollo và Daphne của Bernini">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Bernini_Apollo_Daphne.jpg" alt="Apollo và Daphne, Bernini" />
+      </div>
+      <div class="gallery-item" role="listitem" tabindex="0" aria-label="Tác phẩm Hermes và Dionysus của Praxiteles">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Hermes_and_the_Infant_Dionysus_-_Ancient_Greece_-_Museum_of_Olympia_-_IMG_5766.JPG" alt="Hermes và Dionysus của Praxiteles" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox overlay -->
+  <div class="lightbox" aria-hidden="true" role="dialog" aria-label="Xem ảnh lớn">
+    <span class="lightbox-close" aria-label="Đóng">&times;</span>
+    <img class="lightbox-img" src="" alt="" />
+  </div>
+
+  <!-- ===== 6. KẾT LUẬN ===== -->
+  <section class="conclusion container" id="ket-luan" tabindex="0">
+    <p>Nghệ thuật cổ điển giữ vai trò nền tảng quan trọng trong lịch sử hội họa, đặt cơ sở cho tiêu chuẩn thẩm mỹ và kỹ thuật vẽ ảnh hưởng sâu rộng đến các trường phái nghệ thuật hiện đại và hậu hiện đại sau này. Sự hài hòa, cân đối và sự khát khao vẻ đẹp vượt thời gian vẫn luôn được tôn vinh qua thời gian.</p>
+  </section>
+
+  <!-- ===== 7. FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <nav aria-label="Menu điều hướng chính">
+        <a href="#gioi-thieu">Giới Thiệu</a><br />
+        <a href="#features-title">Đặc Điểm</a><br />
+        <a href="#artists-title">Họa Sĩ</a><br />
+        <a href="#gallery-title">Bộ Sưu Tập</a><br />
+        <a href="#ket-luan">Kết Luận</a>
+      </nav>
+      <section class="desc" aria-label="Mô tả về website">
+        <p>Website này là bảo tàng nghệ thuật trực tuyến dành cho những ai yêu thích và muốn tìm hiểu sâu về trường phái hội họa cổ điển, tôn vinh vẻ đẹp, tỷ lệ và sự hài hòa vượt thời gian trong nghệ thuật.</p>
+      </section>
+    </div>
+    <div class="copyright">
+      © 2026 Trường phái hội họa Cổ điển - AI Hay
+    </div>
+  </footer>
+
+  <!-- JavaScript cho hiệu ứng và tương tác -->
+  <script>
+    // Fade-in khi cuộn đến phần intro
+    const introSection = document.querySelector('.intro');
+    function handleScrollFadeIn() {
+      const triggerPoint = window.innerHeight * 0.85;
+      const introTop = introSection.getBoundingClientRect().top;
+      if (introTop < triggerPoint) {
+        introSection.classList.add('visible');
+        window.removeEventListener('scroll', handleScrollFadeIn);
+      }
+    }
+    window.addEventListener('scroll', handleScrollFadeIn);
+
+    // Scroll indicator click cuộn xuống phần giới thiệu
+    document.querySelector('.scroll-indicator').addEventListener('click', () => {
+      document.querySelector('#gioi-thieu').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Lightbox cho gallery
+    const lightbox = document.querySelector('.lightbox');
+    const lightboxImg = document.querySelector('.lightbox-img');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    galleryItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const imgSrc = item.querySelector('img').src;
+        const imgAlt = item.querySelector('img').alt;
+        lightboxImg.src = imgSrc;
+        lightboxImg.alt = imgAlt;
+        lightbox.classList.add('active');
+        lightbox.setAttribute('aria-hidden', 'false');
+        // Focus vào close button để hỗ trợ keyboard
+        lightboxClose.focus();
+      });
+      // Hỗ trợ mở bằng phím Enter hoặc Space
+      item.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          item.click();
+        }
+      });
+    });
+
+    const lightboxClose = document.querySelector('.lightbox-close');
+    lightboxClose.addEventListener('click', closeLightbox);
+    // Đóng lightbox khi bấm esc hoặc click ngoài ảnh
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+        closeLightbox();
+      }
+    });
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightboxImg.src = '';
+      lightboxImg.alt = '';
+    }
+  </script>
+
+</body>
+</html>
