@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,700;1,700&family=Open+Sans&display=swap" rel="stylesheet">
+
+<style>
+
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:'Open Sans',sans-serif;
+background:#f7f2e9;
+color:#333;
+scroll-behavior:smooth;
+}
+
+img{
+max-width:100%;
+display:block;
+}
+
+h1,h2,h3{
+font-family:'Merriweather',serif;
+color:#3b3b3b;
+}
+
+.container{
+width:90%;
+max-width:1100px;
+margin:auto;
+}
+
+/* HERO */
+
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+position:relative;
+overflow:hidden;
+}
+
+.hero:before{
+content:"";
+position:absolute;
+inset:0;
+background:url("https://upload.wikimedia.org/wikipedia/commons/6/6a/The_School_of_Athens_by_Raffaello_Sanzio_da_Urbino.jpg") center/cover no-repeat;
+filter:brightness(.6);
+z-index:-1;
+}
+
+.hero h1{
+font-size:3.5rem;
+}
+
+.hero p{
+font-size:1.3rem;
+max-width:600px;
+}
+
+/* scroll icon */
+
+.scroll-indicator{
+width:24px;
+height:40px;
+border:2px solid #c49b44;
+border-radius:15px;
+position:absolute;
+bottom:30px;
+}
+
+.scroll-indicator:before{
+content:"";
+position:absolute;
+width:6px;
+height:6px;
+background:#c49b44;
+border-radius:50%;
+left:50%;
+transform:translateX(-50%);
+animation:scroll 2s infinite;
+}
+
+@keyframes scroll{
+0%{top:8px}
+50%{top:24px;opacity:0}
+100%{top:8px}
+}
+
+/* INTRO */
+
+.intro{
+display:flex;
+gap:2rem;
+padding:4rem 0;
+align-items:center;
+}
+
+.intro .text{flex:1}
+
+.intro .image{
+flex:1;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+/* FEATURES */
+
+.features{
+padding-bottom:4rem;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:2rem;
+}
+
+.card{
+background:white;
+border-radius:10px;
+padding:1.5rem;
+box-shadow:0 4px 10px rgba(0,0,0,.1);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-6px);
+}
+
+.card h3{
+color:#c49b44;
+}
+
+/* ARTISTS */
+
+.artists{
+padding-bottom:4rem;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:2rem;
+}
+
+.artist-card{
+background:white;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 5px 12px rgba(0,0,0,.12);
+transition:.3s;
+}
+
+.artist-card:hover{
+transform:scale(1.05);
+}
+
+.artist-img{
+height:200px;
+width:100%;
+object-fit:cover;
+}
+
+.artist-info{
+padding:1rem;
+}
+
+/* GALLERY */
+
+.gallery-grid{
+column-count:3;
+column-gap:1rem;
+}
+
+.gallery-item{
+margin-bottom:1rem;
+overflow:hidden;
+border-radius:8px;
+cursor:pointer;
+}
+
+.gallery-item img{
+transition:.3s;
+}
+
+.gallery-item:hover img{
+transform:scale(1.1);
+}
+
+/* LIGHTBOX */
+
+.lightbox{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.9);
+display:flex;
+justify-content:center;
+align-items:center;
+visibility:hidden;
+opacity:0;
+transition:.3s;
+}
+
+.lightbox.active{
+visibility:visible;
+opacity:1;
+}
+
+.lightbox img{
+max-width:90%;
+max-height:90%;
+border-radius:10px;
+}
+
+.lightbox-close{
+position:absolute;
+top:20px;
+right:30px;
+font-size:2rem;
+color:white;
+cursor:pointer;
+}
+
+/* CONCLUSION */
+
+.conclusion{
+padding:4rem 0;
+text-align:center;
+max-width:800px;
+margin:auto;
+font-size:1.1rem;
+}
+
+@media(max-width:900px){
+
+.intro{
+flex-direction:column;
+}
+
+.gallery-grid{
+column-count:2;
+}
+
+}
+
+@media(max-width:600px){
+
+.hero h1{
+font-size:2.4rem;
+}
+
+.gallery-grid{
+column-count:1;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+<h1>Trường phái hội họa Cổ điển</h1>
+<p>Hành trình khám phá vẻ đẹp, tỷ lệ và sự hài hòa trong nghệ thuật cổ điển.</p>
+<div class="scroll-indicator"></div>
+</section>
+
+<section class="intro container" id="gioi-thieu">
+
+<div class="text">
+<h2>Giới thiệu</h2>
+<p>
+Trường phái hội họa cổ điển bắt nguồn từ nền văn hóa Hy Lạp và La Mã cổ đại,
+nơi nghệ thuật đề cao sự cân đối, tỷ lệ chuẩn mực và vẻ đẹp lý tưởng của con người.
+</p>
+
+<p>
+Các tác phẩm cổ điển thường thể hiện sự hài hòa trong bố cục,
+kỹ thuật vẽ tinh xảo và chủ đề liên quan đến thần thoại, tôn giáo
+hoặc những giá trị nhân văn sâu sắc.
+</p>
+
+</div>
+
+<div class="image">
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/28/La_gioconda%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg">
+</div>
+
+</section>
+
+<section class="features container">
+
+<h2>Đặc điểm của hội họa cổ điển</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>Tỷ lệ chuẩn mực</h3>
+<p>Tỷ lệ cơ thể con người được thể hiện cân đối và hài hòa.</p>
+</div>
+
+<div class="card">
+<h3>Bố cục cân bằng</h3>
+<p>Các yếu tố trong tranh được sắp xếp ổn định và logic.</p>
+</div>
+
+<div class="card">
+<h3>Chủ đề thần thoại</h3>
+<p>Nhiều tác phẩm mô tả các câu chuyện thần thoại và tôn giáo.</p>
+</div>
+
+<div class="card">
+<h3>Kỹ thuật tinh xảo</h3>
+<p>Ánh sáng, màu sắc và chi tiết được thể hiện rất chân thực.</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="artists container">
+
+<h2>Các họa sĩ tiêu biểu</h2>
+
+<div class="grid">
+
+<div class="artist-card">
+<img class="artist-img" src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Leonardo_self.jpg">
+<div class="artist-info">
+<h3>Leonardo da Vinci</h3>
+<p>Thiên tài Phục Hưng với các tác phẩm nổi tiếng như Mona Lisa.</p>
+</div>
+</div>
+
+<div class="artist-card">
+<img class="artist-img" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Michelangelo_selfportrait.jpg">
+<div class="artist-info">
+<h3>Michelangelo</h3>
+<p>Nghệ sĩ vĩ đại với các tác phẩm nổi bật trong hội họa và điêu khắc.</p>
+</div>
+</div>
+
+<div class="artist-card">
+<img class="artist-img" src="https://upload.wikimedia.org/wikipedia/commons/0/03/Raphael_%28Raffaello_Sanzio%29_-_Portrait_of_a_Man_-_Google_Art_Project.jpg">
+<div class="artist-info">
+<h3>Raphael</h3>
+<p>Nổi tiếng với bố cục hài hòa và phong cách thanh lịch.</p>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section class="gallery container">
+
+<h2>Bộ sưu tập tác phẩm</h2>
+
+<div class="gallery-grid">
+
+<div class="gallery-item">
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/28/La_gioconda%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg">
+</div>
+
+<div class="gallery-item">
+<img src="https://upload.wikimedia.org/wikipedia/commons/d/d8/Michelangelo_-_Last_Judgment_01.jpg">
+</div>
+
+<div class="gallery-item">
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Raphael_-_Sistine_Madonna_-_Google_Art_Project.jpg">
+</div>
+
+</div>
+
+</section>
+
+<section class="conclusion container">
+
+<p>
+Nghệ thuật cổ điển đóng vai trò quan trọng trong lịch sử hội họa,
+đặt nền tảng cho tiêu chuẩn thẩm mỹ và kỹ thuật vẽ của nhiều
+trường phái nghệ thuật sau này.
+</p>
+
+</section>
+
+<div class="lightbox">
+<span class="lightbox-close">&times;</span>
+<img>
+</div>
+
+<script>
+
+const lightbox=document.querySelector(".lightbox")
+const lightboxImg=document.querySelector(".lightbox img")
+
+document.querySelectorAll(".gallery-item img").forEach(img=>{
+img.onclick=()=>{
+lightbox.classList.add("active")
+lightboxImg.src=img.src
+}
+})
+
+document.querySelector(".lightbox-close").onclick=()=>{
+lightbox.classList.remove("active")
+}
+
+lightbox.onclick=e=>{
+if(e.target===lightbox){
+lightbox.classList.remove("active")
+}
+}
+
+</script>
+
+</body>
+</html>
